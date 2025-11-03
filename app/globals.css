@@ -1,0 +1,29 @@
+@import "tailwindcss";
+/* :root {
+  font-family: var(--font-lexend);
+} */
+
+@theme {
+  --color-grey-clr: #f4f7fa;
+  --color-grey-clr-2: #161c2d;
+}
+
+body {
+  @apply bg-white text-grey-clr-2;
+  font-family: var(--font-lexend);
+}
+
+@layer utilities {
+  .container {
+    @apply px-4 mx-auto max-w-[1158px] md:px-8 lg:px-12;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+  .title {
+    @apply text-2xl lg:text-4xl font-bold;
+  }
+  .section {
+    @apply pt-28;
+  }
+}
