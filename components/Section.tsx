@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Section = () => {
@@ -6,7 +7,7 @@ const Section = () => {
       <div className="container">
         {/* Image */}
         <figure>
-          <img src="/images/" alt="" />
+          <Image src="/images/" alt="img" />
         </figure>
       </div>
     </section>

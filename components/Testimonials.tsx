@@ -17,7 +17,9 @@ const Testimonials = () => {
               className="bg-white rounded-xl shadow-sm p-8 flex flex-col items-center text-center"
             >
               <RiDoubleQuotesL className="text-indigo-600 text-4xl mb-3" />
-              <p className="text-grey-clr-2 mb-6 italic">"{item.quote}"</p>
+              <p className="text-grey-clr-2 mb-6 italic">
+                &ldquo;{item.quote}&rdquo;
+              </p>
 
               <div className="flex flex-col items-center mt-auto">
                 {/* img */}
