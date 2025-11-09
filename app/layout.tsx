@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartProviderWrapper from "@/components/CartProvider";
-// import NextTopLoader from "nextjs-toploader";
+import NextTopLoader from "nextjs-toploader";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en" className={manrope.className}>
       <body>
         <CartProviderWrapper>
-          {/* <NextTopLoader showSpinner={false} color="#fff" /> */}
+          <NextTopLoader showSpinner={false} color="#fff" />
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />

@@ -42,11 +42,9 @@ export default function Header() {
         <div className="space-x-5 flex items-center">
           <Link href={"/cart"} className="relative block">
             <RiShoppingCart2Line size={30} />
-            {(cartCount ?? 0) > 0 && (
-              <span className="absolute w-5 h-5 bg-emerald-500 -top-1.5 -right-1.5 rounded-full text-white text-sm flex items-center justify-center">
-                {cartCount}
-              </span>
-            )}
+            <span className="absolute w-5 h-5 bg-emerald-500 -top-1.5 -right-1.5 rounded-full text-white text-sm flex items-center justify-center">
+              {cartCount}
+            </span>
           </Link>
           <UserDropdown />
 

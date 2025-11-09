@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { RiShoppingBagLine } from "@remixicon/react";
 import { useShoppingCart } from "use-shopping-cart";
