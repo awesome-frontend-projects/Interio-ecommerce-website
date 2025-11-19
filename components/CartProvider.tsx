@@ -12,8 +12,8 @@ export default function CartProviderWrapper({
       mode="payment"
       cartMode="client-only"
       stripe={process.env.NEXT_PUBLIC_STRIPE_KEY as string}
-      successUrl="http://localhost:3000/success"
-      cancelUrl="http://localhost:3000/error"
+      successUrl={`${typeof window !== "undefined" ? window.location.origin : ""}/success`}
+      cancelUrl={`${typeof window !== "undefined" ? window.location.origin : ""}/error`}
       currency="USD"
       billingAddressCollection={true}
       shouldPersist={true}

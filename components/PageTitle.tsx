@@ -7,7 +7,7 @@ export default function PageTitle() {
   return (
     <div className="min-h-56 bg-neutral-100 text-center flex items-center justify-center mt-16">
       <h2 className="font-bold text-3xl">
-        {pathname === "/shop" ? "Shop" : "Shopping Cart"}
+        {pathname === "/shop" ? "Shop Our Collection" : "Shopping Cart"}
       </h2>
     </div>
   );

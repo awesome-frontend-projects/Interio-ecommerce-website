@@ -2,7 +2,9 @@
 import React from "react";
 import { RiShoppingBagLine } from "@remixicon/react";
 import { useShoppingCart } from "use-shopping-cart";
+import { useUser } from "@clerk/nextjs";
 import { ProductProps } from "@/types/types";
+import toast from "react-hot-toast";
 
 export default function AddToCart({
   _id,
@@ -12,8 +14,18 @@ export default function AddToCart({
   price_id,
 }: ProductProps) {
   const { addItem } = useShoppingCart();
+  const { isSignedIn, isLoaded } = useUser();
 
   const handleAddToCart = () => {
+    if (!isLoaded) {
+      return;
+    }
+
+    if (!isSignedIn) {
+      toast.error("Please login first to add items to cart");
+      return;
+    }
+
     addItem({
       id: _id,
       name: title,
@@ -22,6 +34,8 @@ export default function AddToCart({
       image: img,
       price_id: price_id,
     });
+
+    toast.success(`${title} added to cart!`);
   };
 
   return (

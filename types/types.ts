@@ -4,5 +4,6 @@ export interface ProductProps {
   price: number;
   star?: number;
   img: string;
-  price_id: string;
+  price_id?: string;
+  category?: string;
 }
