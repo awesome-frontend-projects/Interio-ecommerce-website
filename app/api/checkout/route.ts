@@ -5,20 +5,34 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2025-11-17.clover",
 });
 
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image?: string;
+  description?: string;
+}
+
+interface CartDetails {
+  [key: string]: CartItem;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { cartDetails } = body;
+    const { cartDetails } = body as { cartDetails: CartDetails };
 
     if (!cartDetails || Object.keys(cartDetails).length === 0) {
       return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
     }
 
-    const lineItems = Object.values(cartDetails).map((item: any) => {
-      const productData: any = {
-        name: item.name,
-        images: item.image ? [item.image] : [],
-      };
+    const lineItems = Object.values(cartDetails).map((item: CartItem) => {
+      const productData: Stripe.Checkout.SessionCreateParams.LineItem.PriceData.ProductData =
+        {
+          name: item.name,
+          images: item.image ? [item.image] : [],
+        };
 
       if (item.description) {
         productData.description = item.description;
@@ -44,11 +58,10 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ sessionId: session.id, url: session.url });
-  } catch (error: any) {
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Internal server error";
     console.error("Stripe checkout error:", error);
-    return NextResponse.json(
-      { error: error.message || "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
